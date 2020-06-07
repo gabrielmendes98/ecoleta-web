@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
-import './styles.css';
-import logo from '../../assets/logo.svg';
 
 import { FiLogIn, FiSearch } from 'react-icons/fi';
 
+import './styles.css';
+import logo from '../../assets/logo.svg';
+import SearchModal from './SearchModal';
+
 const Home = () => {
+  const [showModal, setShowModal] = useState(false);
+
+  function handleShowModal() {
+    setShowModal(true);
+  }
+
+  function handleHideModal() {
+    setShowModal(false);
+  }
+
   return (
     <div id="page-home">
       <div className="content">
@@ -24,13 +35,15 @@ const Home = () => {
           <h1>Seu marketplace de coleta de resíduos.</h1>
           <p>Ajudamos pessoas a encontrarem pontos de coleta de forma eficiente.</p>
 
-          <Link to="/search-point">
+          <button onClick={handleShowModal}>
             <span>
               <FiSearch />
             </span>
             <strong>Pesquisar pontos de coleta</strong>
-          </Link>
+          </button>
         </main>
+
+        <SearchModal show={showModal} handleClose={handleHideModal} />
       </div>
     </div>
   );
