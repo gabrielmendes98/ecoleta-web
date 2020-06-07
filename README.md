@@ -1,6 +1,6 @@
 # Ecoleta Web Application
 
-![interface demo gif](https://imgur.com/f1724e2f-e214-4cf8-b29b-1f1e9283ce5a)
+![interface demo gif](https://media0.giphy.com/media/J13th3VRNVEk8SXvMJ/giphy.gif)
 
 `The project that was done during the course was finalized, but I am still adding some more features. Soon after that, I will deploy the application.`
 
