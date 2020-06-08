@@ -3,7 +3,7 @@ import { useHistory } from 'react-router';
 import axios from 'axios';
 
 import './styles.css';
-import api from '../../../services/api';
+// import api from '../../../services/api';
 import { useClickOutsideListenerRef } from '../../../utils/useClickOutsideListenerRef';
 
 interface Props {

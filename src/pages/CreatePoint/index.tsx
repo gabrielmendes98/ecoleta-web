@@ -10,6 +10,7 @@ import './styles.css';
 import logo from '../../assets/logo.svg';
 import api from '../../services/api';
 import Dropzone from '../../components/Dropzone';
+import PointAddedModal from './PointAddedModal';
 
 interface Item {
   id: number;
@@ -40,6 +41,8 @@ const CreatePoint = () => {
   });
   const [selectedItems, setSelectedItems] = useState<number[]>([]);
   const [selectedFile, setSelectedFile] = useState<File>();
+
+  const [showModal, setShowModal] = useState(false);
 
   const history = useHistory();
 
@@ -139,7 +142,11 @@ const CreatePoint = () => {
 
     await api.post('points', data);
 
-    alert('Ponto de coleta criado!');
+    setShowModal(true);
+
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
+    setShowModal(false);
 
     history.push('/');
   }
@@ -249,6 +256,8 @@ const CreatePoint = () => {
 
         <button type="submit">Cadastrar ponto de coleta</button>
       </form>
+
+      {showModal && <PointAddedModal show={showModal} />}
     </div>
   );
 };
