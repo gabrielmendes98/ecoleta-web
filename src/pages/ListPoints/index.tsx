@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 
 import logo from '../../assets/logo.svg';
+import PointCard from './PointCard';
 import './styles.css';
 
 const ListPoints = () => {
@@ -17,6 +18,10 @@ const ListPoints = () => {
           Voltar para home
         </Link>
       </header>{' '}
+      <main>
+        <p>2 pontos encontrados</p>
+        <PointCard />
+      </main>
     </div>
   );
 };

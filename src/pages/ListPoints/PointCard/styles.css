@@ -1,0 +1,63 @@
+#point-card {
+  /* Add shadows to create the "card" effect */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  transition: 0.3s;
+
+  margin-left: 30px;
+  margin-top: 30px;
+}
+
+#point-card img {
+  border-radius: 8px 8px 0 0;
+}
+
+/* On mouse-over, add a deeper shadow */
+#point-card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* Add some padding inside the card container */
+#point-card .container {
+  padding: 16px 8px;
+}
+
+#point-card .container h1 {
+  padding: 8px 0;
+}
+
+#point-card .container p {
+  padding: 8px 0 16px 0;
+  color: var(--primary-color);
+  font-size: 20px;
+  font-weight: bold;
+}
+
+#point-card .container span {
+  line-height: 1.4;
+}
+
+#point-card .action-buttons {
+  border-radius: 0 0 8px 8px;
+  padding: 8px 0;
+  background-color: #e5e4e2;
+}
+
+#point-card .action-buttons div {
+  display: inline-block;
+  border-radius: 50%;
+  margin: 0px 2px;
+  padding: 8px;
+  cursor: pointer;
+}
+
+#point-card .action-buttons div:hover {
+  background-color: rgb(201, 201, 201);
+}
+
+#point-card .action-buttons svg {
+  height: 24px;
+  width: 24px;
+  color: var(--title-color);
+}
