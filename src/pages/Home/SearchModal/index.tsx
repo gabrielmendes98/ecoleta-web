@@ -65,21 +65,20 @@ const SearchModal: React.FC<Props> = ({ show, handleClose }) => {
     const uf = selectedUf;
     const city = encodeURI(selectedCity);
 
-    const response = await api.get('/points', { params: { uf, city, items: '1,2,3,4,5,6' } });
+    // const response = await api.get('/points', { params: { uf, city, items: '1,2,3,4,5,6' } });
 
-    console.log(response);
+    // console.log(response);
 
     history.push(`/points?uf=${uf}&city=${city}`);
   }
 
   return (
-    <div id="myModal" className={showHideClassName}>
+    <div id="page-search-points" className={showHideClassName}>
       <div className="modal-content">
         <form onSubmit={handleSubmit}>
           <h1>Pontos de coleta</h1>
 
           <div className="field">
-            <label htmlFor="uf">Estado (UF)</label>
             <select name="uf" id="uf" value={selectedUf} onChange={handleSelectedUf}>
               <option value="0">Selecione uma UF</option>
               {ufs.map((uf) => (
@@ -91,7 +90,6 @@ const SearchModal: React.FC<Props> = ({ show, handleClose }) => {
           </div>
 
           <div className="field">
-            <label htmlFor="city">Cidade</label>
             <select name="city" id="city" value={selectedCity} onChange={handleSelectedCity}>
               <option value="0">Selecione uma cidade</option>
               {cities.map((city) => (
@@ -102,7 +100,9 @@ const SearchModal: React.FC<Props> = ({ show, handleClose }) => {
             </select>
           </div>
 
-          <button type="submit">Buscar</button>
+          <button type="submit">
+            <strong>Buscar</strong>
+          </button>
         </form>
       </div>
     </div>
