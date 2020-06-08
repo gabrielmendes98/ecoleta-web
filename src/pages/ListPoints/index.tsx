@@ -6,6 +6,7 @@ import { FiArrowLeft } from 'react-icons/fi';
 import logo from '../../assets/logo.svg';
 import PointCard from './PointCard';
 import api from '../../services/api';
+import MapModal from './MapModal';
 import './styles.css';
 
 interface Point {
@@ -22,6 +23,7 @@ interface Point {
 
 const ListPoints: React.FC<RouteComponentProps> = ({ location }) => {
   const [points, setPoints] = useState<Point[]>([]);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const query = location.search;
@@ -30,6 +32,14 @@ const ListPoints: React.FC<RouteComponentProps> = ({ location }) => {
       setPoints(response.data);
     });
   }, [location.search]);
+
+  function handleShowModal() {
+    setShowModal(true);
+  }
+
+  function handleHideModal() {
+    setShowModal(false);
+  }
 
   return (
     <div id="page-list-points">
@@ -59,10 +69,14 @@ const ListPoints: React.FC<RouteComponentProps> = ({ location }) => {
                 email={point.email}
                 latitude={point.latitude}
                 longitude={point.longitude}
+                handleShowModal={handleShowModal}
               />
             ))}
         </div>
       </main>
+      {showModal && (
+        <MapModal show={showModal} handleClose={handleHideModal} latitude={-18.8920255} longitude={-48.2095057} />
+      )}
     </div>
   );
 };

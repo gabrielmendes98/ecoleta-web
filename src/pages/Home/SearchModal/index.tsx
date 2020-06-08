@@ -3,7 +3,6 @@ import { useHistory } from 'react-router';
 import axios from 'axios';
 
 import './styles.css';
-// import api from '../../../services/api';
 import { useClickOutsideListenerRef } from '../../../utils/useClickOutsideListenerRef';
 
 interface Props {
@@ -67,10 +66,6 @@ const SearchModal: React.FC<Props> = ({ show, handleClose }) => {
 
     const uf = selectedUf;
     const city = encodeURI(selectedCity);
-
-    // const response = await api.get('/points', { params: { uf, city, items: '1,2,3,4,5,6' } });
-
-    // console.log(response);
 
     history.push(`/points?uf=${uf}&city=${city}`);
   }

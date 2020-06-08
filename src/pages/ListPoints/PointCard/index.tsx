@@ -15,13 +15,25 @@ interface Props {
   longitude: number;
   whatsapp: string;
   email: string;
+  handleShowModal: () => void;
 }
 
 interface Item {
   title: string;
 }
 
-const PointCard: React.FC<Props> = ({ id, image, name, uf, city, whatsapp, email, latitude, longitude }) => {
+const PointCard: React.FC<Props> = ({
+  id,
+  image,
+  name,
+  uf,
+  city,
+  whatsapp,
+  email,
+  latitude,
+  longitude,
+  handleShowModal,
+}) => {
   const [items, setItems] = useState('');
 
   useEffect(() => {
@@ -43,7 +55,7 @@ const PointCard: React.FC<Props> = ({ id, image, name, uf, city, whatsapp, email
           {whatsapp} <br />
           {email} <br />
         </span>
-        <strong>Visualizar no mapa</strong>
+        <strong onClick={handleShowModal}>Visualizar no mapa</strong>
       </div>
       <div className="action-buttons">
         <div className="icon">
