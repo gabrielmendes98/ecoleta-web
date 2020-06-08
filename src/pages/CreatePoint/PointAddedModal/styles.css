@@ -1,4 +1,4 @@
-.modal {
+#register-done.modal {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 9999; /* Sit on top */
@@ -12,7 +12,7 @@
 }
 
 /* Modal Content/Box */
-.modal-content {
+#register-done.modal .modal-content {
   color: white;
   margin: 30% auto; /* 15% from the top and centered */
   padding: 20px;
@@ -24,21 +24,21 @@
   align-items: center;
 }
 
-.display-block {
+#register-done.modal.display-block {
   display: block;
 }
 
-.display-none {
+#register-done.modal.display-none {
   display: none;
 }
 
-.modal-content svg {
+#register-done.modal .modal-content svg {
   height: 48px;
   width: 48px;
   margin-bottom: 16px;
   color: var(--primary-color);
 }
 
-.modal-content h1 {
+#register-done.modal .modal-content h1 {
   color: #fff;
 }

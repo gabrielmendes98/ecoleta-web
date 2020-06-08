@@ -12,7 +12,7 @@ const PointAddedModal: React.FC<Props> = ({ show }) => {
   const showHideClassName = show ? 'modal display-block' : 'modal display-none';
 
   return (
-    <div id="page-search-points" className={showHideClassName}>
+    <div id="register-done" className={showHideClassName}>
       <div className="modal-content">
         <FiCheckCircle />
         <h1>Cadastro concluído!</h1>
