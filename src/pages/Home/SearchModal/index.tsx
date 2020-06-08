@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import './styles.css';
 import api from '../../../services/api';
+import { useClickOutsideListenerRef } from '../../../utils/useClickOutsideListenerRef';
 
 interface Props {
   show: boolean;
@@ -26,6 +27,8 @@ const SearchModal: React.FC<Props> = ({ show, handleClose }) => {
 
   const showHideClassName = show ? 'modal display-block' : 'modal display-none';
   const history = useHistory();
+
+  const ref = useClickOutsideListenerRef(handleClose);
 
   useEffect(() => {
     axios.get<IBGEUFResponse[]>('https://servicodados.ibge.gov.br/api/v1/localidades/estados').then((response) => {
@@ -74,7 +77,7 @@ const SearchModal: React.FC<Props> = ({ show, handleClose }) => {
 
   return (
     <div id="page-search-points" className={showHideClassName}>
-      <div className="modal-content">
+      <div className="modal-content" ref={ref}>
         <form onSubmit={handleSubmit}>
           <h1>Pontos de coleta</h1>
 

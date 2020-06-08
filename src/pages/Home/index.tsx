@@ -43,7 +43,7 @@ const Home = () => {
           </button>
         </main>
 
-        <SearchModal show={showModal} handleClose={handleHideModal} />
+        {showModal && <SearchModal show={showModal} handleClose={handleHideModal} />}
       </div>
     </div>
   );
