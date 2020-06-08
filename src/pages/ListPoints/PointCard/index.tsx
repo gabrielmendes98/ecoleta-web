@@ -8,7 +8,7 @@ const PointCard = () => {
   return (
     <div id="point-card">
       <img
-        src="https://images.unsplash.com/photo-1525212746907-ff35fbdef9ec?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=60"
+        src="https://images.unsplash.com/photo-1525212746907-ff35fbdef9ec?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=350&q=60"
         alt=""
       />
       <div className="container">

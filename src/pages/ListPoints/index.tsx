@@ -19,7 +19,9 @@ const ListPoints = () => {
         </Link>
       </header>{' '}
       <main>
-        <p>2 pontos encontrados</p>
+        <p>
+          <strong>2 pontos</strong> encontrados
+        </p>
         <PointCard />
       </main>
     </div>

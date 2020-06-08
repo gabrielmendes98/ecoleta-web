@@ -26,3 +26,11 @@
   margin-right: 16px;
   color: var(--primary-color);
 }
+
+#page-list-points main {
+  margin-top: 80px;
+}
+
+#page-list-points main > p {
+  margin-bottom: 40px;
+}

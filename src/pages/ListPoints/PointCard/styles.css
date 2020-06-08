@@ -2,14 +2,12 @@
   /* Add shadows to create the "card" effect */
   border-radius: 8px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 300px;
+  max-width: 320px;
   transition: 0.3s;
-
-  margin-left: 30px;
-  margin-top: 30px;
 }
 
 #point-card img {
+  max-width: 320px;
   border-radius: 8px 8px 0 0;
 }
 
