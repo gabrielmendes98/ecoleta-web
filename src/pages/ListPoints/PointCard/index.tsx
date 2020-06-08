@@ -4,19 +4,31 @@ import { FiTrash2, FiEdit } from 'react-icons/fi';
 
 import './styles.css';
 
-const PointCard = () => {
+interface Props {
+  image: string;
+  name: string;
+  items: string[];
+  uf: string;
+  city: string;
+  latitude: number;
+  longitude: number;
+  whatsapp: number;
+  email: string;
+}
+
+const PointCard: React.FC<Props> = ({ image, name, items, uf, city, whatsapp, email, latitude, longitude }) => {
   return (
     <div id="point-card">
-      <img
-        src="https://images.unsplash.com/photo-1525212746907-ff35fbdef9ec?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=350&q=60"
-        alt=""
-      />
+      <img src={image} alt="" />
       <div className="container">
-        <h1>Colectoria</h1>
-        <p>Resíduos Eletrônicos, Lâmpadas</p>
+        <h1>{name}</h1>
+        <p>{items.join(', ')}</p>
         <span>
-          Uberlândia, MG <br /> Av. Belarmino Cotta Pacheco, Santa Mônica <br /> N° 260{' '}
+          {city}, {uf} <br />
+          {whatsapp} <br />
+          {email} <br />
         </span>
+        <strong>Visualizar no mapa</strong>
       </div>
       <div className="action-buttons">
         <div className="icon">

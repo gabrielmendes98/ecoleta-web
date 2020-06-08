@@ -33,7 +33,14 @@
 }
 
 #point-card .container span {
-  line-height: 1.4;
+  line-height: 1.5;
+}
+
+#point-card .container strong {
+  display: inline-block;
+  padding: 8px 0;
+  cursor: pointer;
+  color: var(--title-color);
 }
 
 #point-card .action-buttons {

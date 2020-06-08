@@ -22,7 +22,17 @@ const ListPoints = () => {
         <p>
           <strong>2 pontos</strong> encontrados
         </p>
-        <PointCard />
+        <PointCard
+          image="https://images.unsplash.com/photo-1525212746907-ff35fbdef9ec?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=350&q=60"
+          name="Colectoria"
+          items={['Resíduos Eletrônicos', 'Lâmpadas']}
+          uf="MG"
+          city="Uberlândia"
+          whatsapp={34996863662}
+          email="gabriel@gmail.com"
+          latitude={-18.8920255}
+          longitude={-48.2095057}
+        />
       </main>
     </div>
   );
