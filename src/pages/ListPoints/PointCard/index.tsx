@@ -4,6 +4,7 @@ import { FiTrash2, FiEdit } from 'react-icons/fi';
 
 import './styles.css';
 import api from '../../../services/api';
+import MapModal from '../MapModal';
 
 interface Props {
   id: number;
@@ -15,26 +16,15 @@ interface Props {
   longitude: number;
   whatsapp: string;
   email: string;
-  handleShowModal: () => void;
 }
 
 interface Item {
   title: string;
 }
 
-const PointCard: React.FC<Props> = ({
-  id,
-  image,
-  name,
-  uf,
-  city,
-  whatsapp,
-  email,
-  latitude,
-  longitude,
-  handleShowModal,
-}) => {
+const PointCard: React.FC<Props> = ({ id, image, name, uf, city, whatsapp, email, latitude, longitude }) => {
   const [items, setItems] = useState('');
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     api.get(`points/${id}`).then((response) => {
@@ -43,6 +33,14 @@ const PointCard: React.FC<Props> = ({
       setItems(serializedItems.join(', '));
     });
   }, [id]);
+
+  function handleShowModal() {
+    setShowModal(true);
+  }
+
+  function handleHideModal() {
+    setShowModal(false);
+  }
 
   return (
     <div id="point-card">
@@ -65,6 +63,9 @@ const PointCard: React.FC<Props> = ({
           <FiEdit />
         </div>
       </div>
+      {showModal && (
+        <MapModal show={showModal} handleClose={handleHideModal} latitude={latitude} longitude={longitude} />
+      )}
     </div>
   );
 };
