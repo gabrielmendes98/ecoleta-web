@@ -50,9 +50,9 @@ const ListPoints: React.FC<RouteComponentProps> = ({ location }) => {
             points.map((point) => (
               <PointCard
                 key={String(point.id)}
+                id={point.id}
                 image={point.image_url}
                 name={point.name}
-                items={['Resíduos Eletrônicos', 'Lâmpadas']}
                 uf={point.uf}
                 city={point.city}
                 whatsapp={point.whatsapp}
