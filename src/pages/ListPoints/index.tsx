@@ -1,13 +1,36 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, withRouter, RouteComponentProps } from 'react-router-dom';
 
 import { FiArrowLeft } from 'react-icons/fi';
 
 import logo from '../../assets/logo.svg';
 import PointCard from './PointCard';
+import api from '../../services/api';
 import './styles.css';
 
-const ListPoints = () => {
+interface Point {
+  id: number;
+  city: string;
+  email: string;
+  image_url: string;
+  latitude: number;
+  longitude: number;
+  name: string;
+  uf: string;
+  whatsapp: string;
+}
+
+const ListPoints: React.FC<RouteComponentProps> = ({ location }) => {
+  const [points, setPoints] = useState<Point[]>([]);
+
+  useEffect(() => {
+    const query = location.search;
+
+    api.get(`points${query}`, { params: { items: '1,2,3,4,5,6' } }).then((response) => {
+      setPoints(response.data);
+    });
+  }, [location.search]);
+
   return (
     <div id="page-list-points">
       <header>
@@ -20,22 +43,28 @@ const ListPoints = () => {
       </header>{' '}
       <main>
         <p>
-          <strong>2 pontos</strong> encontrados
+          <strong>{points.length} pontos</strong> encontrados
         </p>
-        <PointCard
-          image="https://images.unsplash.com/photo-1525212746907-ff35fbdef9ec?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=350&q=60"
-          name="Colectoria"
-          items={['Resíduos Eletrônicos', 'Lâmpadas']}
-          uf="MG"
-          city="Uberlândia"
-          whatsapp={34996863662}
-          email="gabriel@gmail.com"
-          latitude={-18.8920255}
-          longitude={-48.2095057}
-        />
+        <div className="points">
+          {points !== [] &&
+            points.map((point) => (
+              <PointCard
+                key={String(point.id)}
+                image={point.image_url}
+                name={point.name}
+                items={['Resíduos Eletrônicos', 'Lâmpadas']}
+                uf={point.uf}
+                city={point.city}
+                whatsapp={point.whatsapp}
+                email={point.email}
+                latitude={point.latitude}
+                longitude={point.longitude}
+              />
+            ))}
+        </div>
       </main>
     </div>
   );
 };
 
-export default ListPoints;
+export default withRouter(ListPoints);

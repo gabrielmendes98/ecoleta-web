@@ -12,7 +12,7 @@ interface Props {
   city: string;
   latitude: number;
   longitude: number;
-  whatsapp: number;
+  whatsapp: string;
   email: string;
 }
 

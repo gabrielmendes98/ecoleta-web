@@ -34,3 +34,19 @@
 #page-list-points main > p {
   margin-bottom: 40px;
 }
+
+#page-list-points main .points {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 320px);
+  justify-content: space-between;
+}
+
+@media only screen and (max-width: 960px) {
+  #page-list-points main .points {
+    justify-content: space-around;
+  }
+}
+
+#page-list-points main .points > div {
+  margin-bottom: 32px;
+}
