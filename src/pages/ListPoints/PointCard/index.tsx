@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 
 import { FiTrash2, FiEdit } from 'react-icons/fi';
 
+import { Link } from 'react-router-dom';
+
 import './styles.css';
 import api from '../../../services/api';
 import MapModal from '../MapModal';
@@ -42,6 +44,8 @@ const PointCard: React.FC<Props> = ({ id, image, name, uf, city, whatsapp, email
     setShowModal(false);
   }
 
+  function handleEdit() {}
+
   return (
     <div id="point-card">
       <img src={image} alt="" />
@@ -59,8 +63,10 @@ const PointCard: React.FC<Props> = ({ id, image, name, uf, city, whatsapp, email
         <div className="icon">
           <FiTrash2 />
         </div>
-        <div className="icon">
-          <FiEdit />
+        <div className="icon" onClick={handleEdit}>
+          <Link to={`/update-point/${id}`}>
+            <FiEdit />
+          </Link>
         </div>
       </div>
       {showModal && (

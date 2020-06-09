@@ -6,9 +6,10 @@ import './styles.css';
 
 interface Props {
   onFileUploaded: (file: File) => void;
+  imageUrl?: string;
 }
 
-const Dropzone: React.FC<Props> = ({ onFileUploaded }) => {
+const Dropzone: React.FC<Props> = ({ onFileUploaded, imageUrl }) => {
   const [selectedFileUrl, setSelectedFileUrl] = useState('');
 
   const onDrop = useCallback(
@@ -28,8 +29,8 @@ const Dropzone: React.FC<Props> = ({ onFileUploaded }) => {
     <div className="dropzone" {...getRootProps()}>
       <input {...getInputProps()} accept="image/*" />
 
-      {selectedFileUrl ? (
-        <img src={selectedFileUrl} alt="Sua imagem" />
+      {selectedFileUrl || imageUrl ? (
+        <img src={selectedFileUrl || imageUrl} alt="Sua imagem" />
       ) : isDragActive ? (
         <p>
           <FiUpload />

@@ -25,6 +25,10 @@ interface IBGECityResponse {
   nome: string;
 }
 
+interface ItemResponse {
+  id: number;
+}
+
 interface Props {
   title: string;
   submitText: string;
@@ -73,6 +77,7 @@ const PointForm: React.FC<Props> = ({ title, submitText, id }) => {
     axios
       .get<IBGECityResponse[]>(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectedUf}/municipios`)
       .then((response) => {
+        console.log(response.data);
         const cities = response.data.map((city) => city.nome);
 
         setCities(cities);
@@ -88,7 +93,8 @@ const PointForm: React.FC<Props> = ({ title, submitText, id }) => {
   useEffect(() => {
     if (id) {
       api.get(`points/${id}`).then((response) => {
-        console.log(response);
+        const itemIds = response.data.items.map((item: ItemResponse) => item.id);
+        setSelectedItems(itemIds);
       });
     }
   }, [id]);
@@ -169,7 +175,10 @@ const PointForm: React.FC<Props> = ({ title, submitText, id }) => {
       <form id="point-form" onSubmit={handleSubmit}>
         <h1>{title}</h1>
 
-        <Dropzone onFileUploaded={setSelectedFile} />
+        <Dropzone
+          onFileUploaded={setSelectedFile}
+          imageUrl="https://images.unsplash.com/photo-1591686224641-2e07b13c0b51?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
+        />
 
         <fieldset>
           <legend>
