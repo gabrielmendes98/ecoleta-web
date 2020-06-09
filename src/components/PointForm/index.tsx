@@ -85,6 +85,14 @@ const PointForm: React.FC<Props> = ({ title, submitText, id }) => {
     });
   }, []);
 
+  useEffect(() => {
+    if (id) {
+      api.get(`points/${id}`).then((response) => {
+        console.log(response);
+      });
+    }
+  }, [id]);
+
   function handleSelectedUf(event: ChangeEvent<HTMLSelectElement>) {
     const uf = event.target.value;
 
