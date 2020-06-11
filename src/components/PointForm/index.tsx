@@ -25,8 +25,22 @@ interface IBGECityResponse {
   nome: string;
 }
 
-interface ItemResponse {
-  id: number;
+interface PointData {
+  name: string;
+  email: string;
+  whatsapp: string;
+  uf: string;
+  city: string;
+  latitude: number;
+  longitude: number;
+  image_url: string;
+}
+
+interface PointResponse {
+  point: PointData;
+  items: {
+    id: number;
+  }[];
 }
 
 interface Props {
@@ -53,6 +67,17 @@ const PointForm: React.FC<Props> = ({ title, submitText, id }) => {
 
   const [showModal, setShowModal] = useState(false);
 
+  const [pointData, setPointData] = useState<PointData>({
+    name: '',
+    email: '',
+    whatsapp: '',
+    uf: '',
+    city: '',
+    latitude: 0,
+    longitude: 0,
+    image_url: '',
+  });
+
   const history = useHistory();
 
   useEffect(() => {
@@ -77,7 +102,6 @@ const PointForm: React.FC<Props> = ({ title, submitText, id }) => {
     axios
       .get<IBGECityResponse[]>(`https://servicodados.ibge.gov.br/api/v1/localidades/estados/${selectedUf}/municipios`)
       .then((response) => {
-        console.log(response.data);
         const cities = response.data.map((city) => city.nome);
 
         setCities(cities);
@@ -92,12 +116,19 @@ const PointForm: React.FC<Props> = ({ title, submitText, id }) => {
 
   useEffect(() => {
     if (id) {
-      api.get(`points/${id}`).then((response) => {
-        const itemIds = response.data.items.map((item: ItemResponse) => item.id);
+      api.get<PointResponse>(`points/${id}`).then((response) => {
+        const itemIds = response.data.items.map((item) => item.id);
+        const point = response.data.point;
         setSelectedItems(itemIds);
+        setPointData(point);
+        setSelectedUf(point.uf);
+        setSelectedCity(point.city);
+        setSelectedPosition([point.latitude, point.longitude]);
+        // setFormData({ name: point.name, email: point.email, whatsapp: point.whatsapp });
+        console.log('teste');
       });
     }
-  }, [id]);
+  }, [formData, id]);
 
   function handleSelectedUf(event: ChangeEvent<HTMLSelectElement>) {
     const uf = event.target.value;
@@ -175,10 +206,7 @@ const PointForm: React.FC<Props> = ({ title, submitText, id }) => {
       <form id="point-form" onSubmit={handleSubmit}>
         <h1>{title}</h1>
 
-        <Dropzone
-          onFileUploaded={setSelectedFile}
-          imageUrl="https://images.unsplash.com/photo-1591686224641-2e07b13c0b51?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80"
-        />
+        <Dropzone onFileUploaded={setSelectedFile} imageUrl={pointData.image_url} />
 
         <fieldset>
           <legend>
@@ -187,18 +215,24 @@ const PointForm: React.FC<Props> = ({ title, submitText, id }) => {
 
           <div className="field">
             <label htmlFor="name">Nome da entidade</label>
-            <input type="text" name="name" id="name" onChange={handleInputChange} />
+            <input type="text" name="name" id="name" onChange={handleInputChange} defaultValue={pointData.name} />
           </div>
 
           <div className="field-group">
             <div className="field">
               <label htmlFor="email">E-mail</label>
-              <input type="email" name="email" id="email" onChange={handleInputChange} />
+              <input type="email" name="email" id="email" onChange={handleInputChange} defaultValue={pointData.email} />
             </div>
 
             <div className="field">
               <label htmlFor="whatsapp">Whatsapp</label>
-              <input type="text" name="whatsapp" id="whatsapp" onChange={handleInputChange} />
+              <input
+                type="text"
+                name="whatsapp"
+                id="whatsapp"
+                onChange={handleInputChange}
+                defaultValue={pointData.whatsapp}
+              />
             </div>
           </div>
         </fieldset>
@@ -209,7 +243,11 @@ const PointForm: React.FC<Props> = ({ title, submitText, id }) => {
             <span>Selecione o endereço no mapa</span>
           </legend>
 
-          <Map center={initialPosition} zoom={15} onClick={handleMapClick}>
+          <Map
+            center={JSON.stringify(selectedPosition) !== JSON.stringify([0, 0]) ? selectedPosition : initialPosition}
+            zoom={15}
+            onClick={handleMapClick}
+          >
             <TileLayer
               attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
