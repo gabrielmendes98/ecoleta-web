@@ -124,11 +124,10 @@ const PointForm: React.FC<Props> = ({ title, submitText, id }) => {
         setSelectedUf(point.uf);
         setSelectedCity(point.city);
         setSelectedPosition([point.latitude, point.longitude]);
-        // setFormData({ name: point.name, email: point.email, whatsapp: point.whatsapp });
-        console.log('teste');
+        setFormData({ name: point.name, email: point.email, whatsapp: point.whatsapp });
       });
     }
-  }, [formData, id]);
+  }, [id]);
 
   function handleSelectedUf(event: ChangeEvent<HTMLSelectElement>) {
     const uf = event.target.value;
@@ -190,7 +189,11 @@ const PointForm: React.FC<Props> = ({ title, submitText, id }) => {
       data.append('image', selectedFile);
     }
 
-    await api.post('points', data);
+    if (id) {
+      await api.put(`points/${id}`, data);
+    } else {
+      await api.post('points', data);
+    }
 
     setShowModal(true);
 
@@ -306,7 +309,7 @@ const PointForm: React.FC<Props> = ({ title, submitText, id }) => {
         <button type="submit">{submitText}</button>
       </form>
 
-      {showModal && <PointAddedModal show={showModal} />}
+      {showModal && <PointAddedModal show={showModal} title={id ? 'Atualização concluída!' : 'Cadastro concluído!'} />}
     </>
   );
 };
