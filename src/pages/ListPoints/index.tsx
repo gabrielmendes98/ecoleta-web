@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Link, withRouter, RouteComponentProps } from 'react-router-dom';
 
 import { FiArrowLeft } from 'react-icons/fi';
@@ -23,13 +23,23 @@ interface Point {
 const ListPoints: React.FC<RouteComponentProps> = ({ location }) => {
   const [points, setPoints] = useState<Point[]>([]);
 
-  useEffect(() => {
+  const loadPoints = useCallback(() => {
     const query = location.search;
 
     api.get(`points${query}`, { params: { items: '1,2,3,4,5,6' } }).then((response) => {
       setPoints(response.data);
     });
   }, [location.search]);
+
+  useEffect(() => {
+    loadPoints();
+  }, [loadPoints]);
+
+  function handleDelete(id: number) {
+    api.delete(`points/${id}`).then((response) => {
+      loadPoints();
+    });
+  }
 
   return (
     <div id="page-list-points">
@@ -59,6 +69,7 @@ const ListPoints: React.FC<RouteComponentProps> = ({ location }) => {
                 email={point.email}
                 latitude={point.latitude}
                 longitude={point.longitude}
+                handleDelete={handleDelete}
               />
             ))}
         </div>

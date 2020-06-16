@@ -18,13 +18,25 @@ interface Props {
   longitude: number;
   whatsapp: string;
   email: string;
+  handleDelete: (id: number) => void;
 }
 
 interface Item {
   title: string;
 }
 
-const PointCard: React.FC<Props> = ({ id, image, name, uf, city, whatsapp, email, latitude, longitude }) => {
+const PointCard: React.FC<Props> = ({
+  id,
+  image,
+  name,
+  uf,
+  city,
+  whatsapp,
+  email,
+  latitude,
+  longitude,
+  handleDelete,
+}) => {
   const [items, setItems] = useState('');
   const [showModal, setShowModal] = useState(false);
 
@@ -44,8 +56,6 @@ const PointCard: React.FC<Props> = ({ id, image, name, uf, city, whatsapp, email
     setShowModal(false);
   }
 
-  function handleEdit() {}
-
   return (
     <div id="point-card">
       <img src={image} alt="" />
@@ -60,10 +70,10 @@ const PointCard: React.FC<Props> = ({ id, image, name, uf, city, whatsapp, email
         <strong onClick={handleShowModal}>Visualizar no mapa</strong>
       </div>
       <div className="action-buttons">
-        <div className="icon">
+        <div className="icon" onClick={() => handleDelete(id)}>
           <FiTrash2 />
         </div>
-        <div className="icon" onClick={handleEdit}>
+        <div className="icon">
           <Link to={`/update-point/${id}`}>
             <FiEdit />
           </Link>
