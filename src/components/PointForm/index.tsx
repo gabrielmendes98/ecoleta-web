@@ -190,6 +190,7 @@ const PointForm: React.FC<Props> = ({ title, submitText, id }) => {
     }
 
     if (id) {
+      data.forEach((value) => console.log(value));
       await api.put(`points/${id}`, data);
     } else {
       await api.post('points', data);
@@ -201,7 +202,11 @@ const PointForm: React.FC<Props> = ({ title, submitText, id }) => {
 
     setShowModal(false);
 
-    history.push('/');
+    if (id) {
+      history.goBack();
+    } else {
+      history.push('/');
+    }
   }
 
   return (
