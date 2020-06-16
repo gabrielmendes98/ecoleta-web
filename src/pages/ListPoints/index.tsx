@@ -5,6 +5,7 @@ import { FiArrowLeft } from 'react-icons/fi';
 
 import logo from '../../assets/logo.svg';
 import PointCard from './PointCard';
+import Snackbar from './Snackbar';
 import api from '../../services/api';
 import './styles.css';
 
@@ -22,6 +23,7 @@ interface Point {
 
 const ListPoints: React.FC<RouteComponentProps> = ({ location }) => {
   const [points, setPoints] = useState<Point[]>([]);
+  const [showSnackbar, setShowSnackbar] = useState(false);
 
   const loadPoints = useCallback(() => {
     const query = location.search;
@@ -36,8 +38,11 @@ const ListPoints: React.FC<RouteComponentProps> = ({ location }) => {
   }, [loadPoints]);
 
   function handleDelete(id: number) {
-    api.delete(`points/${id}`).then((response) => {
+    api.delete(`points/${id}`).then(async (response) => {
       loadPoints();
+      setShowSnackbar(true);
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      setShowSnackbar(false);
     });
   }
 
@@ -73,6 +78,7 @@ const ListPoints: React.FC<RouteComponentProps> = ({ location }) => {
               />
             ))}
         </div>
+        {showSnackbar && <Snackbar />}
       </main>
     </div>
   );
