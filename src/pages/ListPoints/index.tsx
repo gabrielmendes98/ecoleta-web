@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { RouteComponentProps, Link } from 'react-router-dom';
 
 import { FiArrowLeft } from 'react-icons/fi';
 
@@ -39,7 +39,7 @@ const ListPoints: React.FC<RouteComponentProps> = ({ location }) => {
   }, [loadPoints]);
 
   function handleDelete(id: number) {
-    api.delete(`points/${id}`).then(async (response) => {
+    api.delete(`points/${id}`).then(async () => {
       loadPoints();
       setShowSnackbar(true);
       await new Promise((resolve) => setTimeout(resolve, 2000));
@@ -49,7 +49,12 @@ const ListPoints: React.FC<RouteComponentProps> = ({ location }) => {
 
   return (
     <div id="page-list-points">
-      <Header path="/" navTitle="Voltar para home" navIcon={FiArrowLeft} />
+      <Header>
+        <Link to="/">
+          <FiArrowLeft />
+          Voltar para home
+        </Link>
+      </Header>
 
       <main>
         <p>
@@ -79,4 +84,4 @@ const ListPoints: React.FC<RouteComponentProps> = ({ location }) => {
   );
 };
 
-export default withRouter(ListPoints);
+export default ListPoints;

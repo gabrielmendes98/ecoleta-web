@@ -11,16 +11,22 @@ header {
   align-items: center;
 }
 
-header a {
+header a,
+header p {
   color: var(--title-color);
   font-weight: bold;
   text-decoration: none;
 
   display: flex;
   align-items: center;
+
+  cursor: pointer;
 }
 
-header a svg {
+header a svg,
+header p svg {
   margin-right: 16px;
   color: var(--primary-color);
+
+  cursor: pointer;
 }

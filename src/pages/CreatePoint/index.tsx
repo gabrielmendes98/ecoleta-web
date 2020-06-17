@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import { FiArrowLeft } from 'react-icons/fi';
 
@@ -10,7 +11,12 @@ import './styles.css';
 const CreatePoint = () => {
   return (
     <div id="page-create-point">
-      <Header path="/" navTitle="Voltar para home" navIcon={FiArrowLeft} />
+      <Header>
+        <Link to="/">
+          <FiArrowLeft />
+          Voltar para home
+        </Link>
+      </Header>
       <main>
         <PointForm title="Cadastro do ponto de coleta" submitText="Cadastrar ponto de coleta" />
       </main>
