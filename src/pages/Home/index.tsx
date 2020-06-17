@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { FiSearch, FiArrowLeft } from 'react-icons/fi';
+import { FiSearch, FiLogIn } from 'react-icons/fi';
 
 import SearchModal from './SearchModal';
 import Header from '../../components/Header';
@@ -24,8 +24,8 @@ const Home = () => {
       <div className="content">
         <Header>
           <Link to="/create-point">
-            <FiArrowLeft />
-            Voltar para home
+            <FiLogIn />
+            Cadastre um ponto de coleta
           </Link>
         </Header>
 
