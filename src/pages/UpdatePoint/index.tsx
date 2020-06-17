@@ -1,11 +1,12 @@
 import React from 'react';
-import { Link, RouteComponentProps, withRouter } from 'react-router-dom';
+import { RouteComponentProps } from 'react-router-dom';
 
 import { FiArrowLeft } from 'react-icons/fi';
 
-import './styles.css';
-import logo from '../../assets/logo.svg';
 import PointForm from '../../components/PointForm';
+import Header from '../../components/Header';
+
+import './styles.css';
 
 interface MatchParams {
   id: string;
@@ -16,14 +17,7 @@ const UpdatePoint: React.FC<RouteComponentProps<MatchParams>> = ({ match }) => {
 
   return (
     <div id="page-edit-point">
-      <header>
-        <img src={logo} alt="Ecoleta" />
-
-        <Link to="/">
-          <FiArrowLeft />
-          Voltar para home
-        </Link>
-      </header>
+      <Header path="/" navTitle="Voltar para home" navIcon={FiArrowLeft} />
       <main>
         <PointForm title="Atualizar ponto de coleta" submitText="Atualizar ponto de coleta" id={Number(id)} />
       </main>
@@ -31,4 +25,4 @@ const UpdatePoint: React.FC<RouteComponentProps<MatchParams>> = ({ match }) => {
   );
 };
 
-export default withRouter(UpdatePoint);
+export default UpdatePoint;

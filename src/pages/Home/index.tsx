@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 import { FiLogIn, FiSearch } from 'react-icons/fi';
 
-import './styles.css';
-import logo from '../../assets/logo.svg';
 import SearchModal from './SearchModal';
+import Header from '../../components/Header';
+
+import './styles.css';
 
 const Home = () => {
   const [showModal, setShowModal] = useState(false);
@@ -21,15 +21,7 @@ const Home = () => {
   return (
     <div id="page-home">
       <div className="content">
-        <header>
-          <img src={logo} alt="Ecoleta" />
-          <Link to="/create-point">
-            <span>
-              <FiLogIn />
-            </span>
-            <strong>Cadastre um ponto de coleta</strong>
-          </Link>
-        </header>
+        <Header path="/create-point" navTitle="Cadastre um ponto de coleta" navIcon={FiLogIn} />
 
         <main>
           <h1>Seu marketplace de coleta de resíduos.</h1>

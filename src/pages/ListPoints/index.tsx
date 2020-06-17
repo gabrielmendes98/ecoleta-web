@@ -1,12 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Link, withRouter, RouteComponentProps } from 'react-router-dom';
+import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 import { FiArrowLeft } from 'react-icons/fi';
 
-import logo from '../../assets/logo.svg';
 import PointCard from './PointCard';
 import Snackbar from './Snackbar';
 import api from '../../services/api';
+import Header from '../../components/Header';
+
 import './styles.css';
 
 interface Point {
@@ -48,14 +49,8 @@ const ListPoints: React.FC<RouteComponentProps> = ({ location }) => {
 
   return (
     <div id="page-list-points">
-      <header>
-        <img src={logo} alt="Ecoleta" />
+      <Header path="/" navTitle="Voltar para home" navIcon={FiArrowLeft} />
 
-        <Link to="/">
-          <FiArrowLeft />
-          Voltar para home
-        </Link>
-      </header>{' '}
       <main>
         <p>
           <strong>{points.length} pontos</strong> encontrados

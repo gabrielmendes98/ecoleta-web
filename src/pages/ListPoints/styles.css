@@ -5,28 +5,6 @@
   margin: 0 auto;
 }
 
-#page-list-points header {
-  margin-top: 48px;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-#page-list-points header a {
-  color: var(--title-color);
-  font-weight: bold;
-  text-decoration: none;
-
-  display: flex;
-  align-items: center;
-}
-
-#page-list-points header a svg {
-  margin-right: 16px;
-  color: var(--primary-color);
-}
-
 #page-list-points main {
   margin-top: 80px;
 }
