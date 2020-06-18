@@ -1,10 +1,8 @@
 # Ecoleta Web Application
 
-![interface demo gif](https://media0.giphy.com/media/J13th3VRNVEk8SXvMJ/giphy.gif)
+![interface demo gif](app-demo-gif.gif)
 
-`The project that was done during the course was finalized, but I am still adding some more features. Soon after that, I will deploy the application.`
-
-This is the web interface of the Ecoleta project developed during Rocketseat's Next Level Week.
+The registration page for the collection point was made during Rocketseat's Next Level Week. The other pages, features, modularisations and other things were done by me as a personal challenge, as well as the application deployment.
 
 This project was created using basically react, typescript, axios, react-icons, leaflet (to create the map) and react-dropzone to upload images.
 
@@ -18,4 +16,4 @@ This project was created using basically react, typescript, axios, react-icons, 
 
 ## Live demo
 
-Coming soon...
+https://ecoleta-gabrielmendes98.netlify.app/
